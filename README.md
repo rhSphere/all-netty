@@ -3,7 +3,13 @@
 ## flash-netty
 
 
+## mooc-netty
+
+
 ## TBD
+
+
+
 
 
 
@@ -13,11 +19,7 @@
    
    git config user.email "rhsphere@gmail.com"
    
-   
-   git remote add origin git@github.com:rhSphere/ds-sword-offer.git
+   git remote add origin git@github.com:rhSphere/all-netty.git
    
    git push -u -f origin master
    
-   删除target
-   
-   git rm -r --cached target/*
