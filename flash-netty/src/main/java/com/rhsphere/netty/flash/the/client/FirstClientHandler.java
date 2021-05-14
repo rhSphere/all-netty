@@ -17,12 +17,16 @@ import java.util.Date;
 @Slf4j
 public class FirstClientHandler extends ChannelInboundHandlerAdapter {
 
+//    ChannelInboundHandlerAdapter 楼主定义handler的时候不应该继承这个吧，
+//    这类里面没有释放butebuf，
+//    而是应该继承SimpleChannelInboundHandler这个类，这个类中有buytebuf相关的释放操作
+
     private static final String TEXT = "你好，netty!";
 
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        log.info(new Date() + ": 客户端写出数据");
+        log.info("客户端写出数据");
 
         // 1.获取数据
         ByteBuf buffer = getByteBuf(ctx);
@@ -31,9 +35,13 @@ public class FirstClientHandler extends ChannelInboundHandlerAdapter {
         ctx.channel().writeAndFlush(buffer);
     }
 
+
     private ByteBuf getByteBuf(ChannelHandlerContext ctx) {
+
         byte[] bytes = TEXT.getBytes(StandardCharsets.UTF_8);
 
+        // 获取到一个 ByteBuf 的内存管理器，这个 内存管理器的作用就是分配一个 ByteBuf
+        //把字符串的二进制数据填充到 ByteBuf
         ByteBuf buffer = ctx.alloc().buffer();
 
         buffer.writeBytes(bytes);
@@ -46,6 +54,6 @@ public class FirstClientHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ByteBuf byteBuf = (ByteBuf) msg;
 
-        System.out.println(new Date() + ": 客户端读到数据 -> " + byteBuf.toString(StandardCharsets.UTF_8));
+       log.info("客户端读到数据 -> " + byteBuf.toString(StandardCharsets.UTF_8));
     }
 }

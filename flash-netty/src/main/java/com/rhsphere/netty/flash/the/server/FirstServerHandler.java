@@ -18,14 +18,17 @@ public class FirstServerHandler extends ChannelInboundHandlerAdapter {
 
     private static final String TEXT = "你好，netty!你好，欢迎关注我的微信公众号!";
 
+    // 在接收到客户端发来的数据之后被回调
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        //  msg 参数指的就是 Netty 里面数据读写的载体，
+        //  为什么这里不直接是 ByteBuf，而需要我们强转一下，我们后面会分析到
         ByteBuf byteBuf = (ByteBuf) msg;
 
-        log.info(new Date() + ": 服务端读到数据 -> " + byteBuf.toString(StandardCharsets.UTF_8));
+        log.info("服务端读到数据 -> " + byteBuf.toString(StandardCharsets.UTF_8));
 
         // 回复数据到客户端
-        log.info(new Date() + ": 服务端写出数据");
+        log.info("服务端写出数据");
         ByteBuf out = getByteBuf(ctx);
         ctx.channel().writeAndFlush(out);
     }
