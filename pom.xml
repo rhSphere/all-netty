@@ -21,6 +21,7 @@
         <module>flash-netty</module>
         <module>mooc-netty</module>
         <module>architect-netty</module>
+        <module>rapid-rpc</module>
     </modules>
 
 
