@@ -25,7 +25,6 @@
         <module>rpc-protocol</module>
         <module>rpc-facade</module>
         <module>rpc-registry</module>
-        <module>rpc-test</module>
         <module>rpc-consumer</module>
     </modules>
 

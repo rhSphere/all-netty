@@ -1,0 +1,7 @@
+logging:
+  config: classpath:logback.xml
+
+rpc:
+  servicePort: 2781
+  registryType: ZOOKEEPER
+  registryAddress: 62.234.79.35:2181,62.234.79.35:2182,62.234.79.35:2183
